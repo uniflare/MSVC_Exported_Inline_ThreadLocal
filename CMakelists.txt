@@ -1,0 +1,11 @@
+project(MSVC_Exportd_Inline_ThreadLocal)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
+
+add_library(DLL_Library SHARED "src/DLL_Library.h" "src/DLL_Library.cpp")
+target_compile_definitions(DLL_Library PRIVATE DLL_Library_EXPORTS)
+
+add_library(DLL_Client SHARED "src/DLL_Client.cpp")
+target_link_libraries(DLL_Client DLL_Library)
